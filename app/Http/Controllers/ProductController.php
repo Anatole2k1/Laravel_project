@@ -8,7 +8,8 @@ use App\Models\Product;
 class ProductController extends Controller
 {
     public function index(){
-        return view('products.index',['products'=> Product::get()]);
+        // return view('products.index',['products'=> Product::get()]);
+        return view('products.index',['products'=> Product::latest()->paginate(4)]);
     }
 
     public function create(){
@@ -73,5 +74,11 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->first();
         $product->delete();
         return back()->withSuccess('Delete updated!!!');
+    }
+
+    public function show($id){
+        $product = Product::where('id',$id)->first();
+
+        return view('products.show',['product'=>$product]);
     }
 }

@@ -29,3 +29,8 @@
                 <strong>{{ $message }}</strong>
             </div>
         @endif
+
+        @yield('main')
+    
+</body>
+</html>
